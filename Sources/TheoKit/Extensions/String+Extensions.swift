@@ -26,6 +26,15 @@ extension String {
         return Double(stringFormated)
     }
     
+    public func isEmptyWithoutSpace() -> Bool {
+        var string = self
+        if string.replacingOccurrences(of: " ", with: "").isEmpty {
+            return true
+        } else { 
+            return false
+        }
+    }
+    
     #if canImport(UIKit)
     public func width(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [NSAttributedString.Key.font: font]
