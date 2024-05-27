@@ -11,10 +11,10 @@ import SwiftUI
 public struct AddButton: View {
     
     // Builder
-    var icon: String?
-    var foregroundColor: Color?
-    var backgroundColor: Color?
-    var action: () -> Void
+    public var icon: String?
+    public var foregroundColor: Color?
+    public var backgroundColor: Color?
+    public var action: () -> Void
     
     // MARK: -
     public var body: some View {
