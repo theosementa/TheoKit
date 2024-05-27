@@ -13,4 +13,8 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
     
+    public func toDouble() -> Double? {
+        let stringFormated = self.replacingOccurrences(of: ",", with: ".")
+        return Double(stringFormated)
+    }
 }
