@@ -12,13 +12,15 @@ public struct AddButton: View {
     
     // Builder
     public var icon: String?
+    public var iconSize: CGFloat?
     public var foregroundColor: Color?
     public var backgroundColor: Color?
     public var action: () -> Void
     
     // init
-    public init(icon: String? = nil, foregroundColor: Color? = nil, backgroundColor: Color? = nil, action: @escaping () -> Void) {
+    public init(icon: String? = nil, iconSize: CGFloat? = nil, foregroundColor: Color? = nil, backgroundColor: Color? = nil, action: @escaping () -> Void) {
         self.icon = icon
+        self.iconSize = iconSize
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.action = action
@@ -31,12 +33,12 @@ public struct AddButton: View {
             VibrationManager.shared.doVibration()
         }, label: {
             Circle()
-                .fill(backgroundColor.isNotNil() ? backgroundColor! : Color(uiColor: .label))
+                .fill(backgroundColor ?? Color(uiColor: .label))
                 .frame(width: 58, height: 58)
                 .overlay {
-                    Image(systemName: icon.isNotNil() ? icon! : "plus")
-                        .font(.system(size: 22, weight: .semibold, design: .rounded))
-                        .foregroundStyle(foregroundColor.isNotNil() ? foregroundColor! : Color(uiColor: .systemBackground))
+                    Image(systemName: icon ?? "plus")
+                        .font(.system(size: iconSize ?? 20, weight: .semibold, design: .rounded))
+                        .foregroundStyle(foregroundColor ?? Color(uiColor: .systemBackground))
                 }
         })
     } // End body
