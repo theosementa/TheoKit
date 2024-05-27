@@ -62,6 +62,7 @@ public enum SettingCellStyle {
     case suggestFeature
     case conditionOfUse
     case privacyPolicy
+    case moreFromThisDev
     
     public var icon: String {
         switch self {
@@ -79,6 +80,8 @@ public enum SettingCellStyle {
             return "lock.fill"
         case .privacyPolicy:
             return "hand.raised.fill"
+        case .moreFromThisDev:
+            return "app.badge.checkmark.fill"
         }
     }
     
@@ -97,6 +100,8 @@ public enum SettingCellStyle {
         case .conditionOfUse:
             return .blue
         case .privacyPolicy:
+            return .blue
+        case .moreFromThisDev:
             return .blue
         }
     }
@@ -117,6 +122,8 @@ public enum SettingCellStyle {
             return "word_conditions".localizedPackage
         case .privacyPolicy:
             return "word_privacy".localizedPackage
+        case .moreFromThisDev:
+            return "word_moreFromThisDev".localizedPackage
         }
     }
     
@@ -135,6 +142,8 @@ public enum SettingCellStyle {
         case .conditionOfUse:
             return false
         case .privacyPolicy:
+            return false
+        case .moreFromThisDev:
             return false
         }
     }
