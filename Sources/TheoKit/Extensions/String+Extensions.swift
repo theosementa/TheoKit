@@ -17,6 +17,10 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
     
+    var localizedPackage: String {
+        return NSLocalizedString(self, bundle: .module, comment: "")
+    }
+    
     public func toDouble() -> Double? {
         let stringFormated = self.replacingOccurrences(of: ",", with: ".")
         return Double(stringFormated)
