@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 public class VibrationManager {
-    static let shared = VibrationManager()
+    public static let shared = VibrationManager()
 
     public func doVibration() {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
