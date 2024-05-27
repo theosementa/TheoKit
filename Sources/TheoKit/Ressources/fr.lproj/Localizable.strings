@@ -1,1 +1,15 @@
-"word_general" = "France";
+//MARK: - General Words
+"word_general" = "Géneral";
+
+"word_review" = "Rédiger un avis";
+
+"word_share" = "Partager l'application";
+
+"word_reportBug" = "Signaler un bug";
+
+"word_suggestFeature" = "Suggérer une fonctionnalité";
+
+"word_conditions" = "Condition d'utilisation";
+
+"word_privacy" = "Politique de confidentialité";
+

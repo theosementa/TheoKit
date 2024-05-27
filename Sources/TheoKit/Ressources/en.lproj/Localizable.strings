@@ -1,8 +1,15 @@
-/* 
-  Localizable.strings
-  
+//MARK: - General Words
+"word_general" = "General";
 
-  Created by KaayZenn on 27/05/2024.
-  
-*/
-"word_general" = "English";
+"word_review" = "Write a review";
+
+"word_share" = "Share the app";
+
+"word_reportBug" = "Report a bug";
+
+"word_suggestFeature" = "Suggest a feature";
+
+"word_conditions" = "Terms of use";
+
+"word_privacy" = "Privacy policy";
+

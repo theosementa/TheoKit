@@ -50,7 +50,6 @@ public struct SettingCellPredefined: View {
 #Preview {
     Form {
         SettingCellPredefined(style: .general, action: {})
-            .environment(\.locale, Locale(identifier: "fr"))
         SettingCellPredefined(style: .review, action: {})
     }
 }
@@ -60,7 +59,7 @@ public enum SettingCellStyle {
     case review
     case share
     case reportBug
-    case suggerateFunctionality
+    case suggestFeature
     case conditionOfUse
     case privacyPolicy
     
@@ -74,7 +73,7 @@ public enum SettingCellStyle {
             return "square.and.arrow.up.fill"
         case .reportBug:
             return "ladybug.fill"
-        case .suggerateFunctionality:
+        case .suggestFeature:
             return "sparkles"
         case .conditionOfUse:
             return "lock.fill"
@@ -93,7 +92,7 @@ public enum SettingCellStyle {
             return .blue
         case .reportBug:
             return .red
-        case .suggerateFunctionality:
+        case .suggestFeature:
             return .purple
         case .conditionOfUse:
             return .blue
@@ -107,17 +106,17 @@ public enum SettingCellStyle {
         case .general:
             return "word_general".localizedPackage
         case .review:
-            return "word_general".localizedPackage
+            return "word_review".localizedPackage
         case .share:
-            return "word_general".localizedPackage
+            return "word_share".localizedPackage
         case .reportBug:
-            return "word_general".localizedPackage
-        case .suggerateFunctionality:
-            return "word_general".localizedPackage
+            return "word_reportBug".localizedPackage
+        case .suggestFeature:
+            return "word_suggestFeature".localizedPackage
         case .conditionOfUse:
-            return "word_general".localizedPackage
+            return "word_conditions".localizedPackage
         case .privacyPolicy:
-            return "word_general".localizedPackage
+            return "word_privacy".localizedPackage
         }
     }
     
@@ -131,7 +130,7 @@ public enum SettingCellStyle {
             return false
         case .reportBug:
             return false
-        case .suggerateFunctionality:
+        case .suggestFeature:
             return false
         case .conditionOfUse:
             return false
