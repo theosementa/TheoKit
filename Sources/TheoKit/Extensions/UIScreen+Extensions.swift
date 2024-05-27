@@ -5,10 +5,9 @@
 //  Created by KaayZenn on 27/05/2024.
 //
 
-import Foundation
-
 #if canImport(UIKit)
 
+import Foundation
 import UIKit
 
 extension UIScreen {
