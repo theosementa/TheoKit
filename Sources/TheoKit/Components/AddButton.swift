@@ -16,6 +16,14 @@ public struct AddButton: View {
     public var backgroundColor: Color?
     public var action: () -> Void
     
+    // init
+    public init(icon: String? = nil, foregroundColor: Color? = nil, backgroundColor: Color? = nil, action: @escaping () -> Void) {
+        self.icon = icon
+        self.foregroundColor = foregroundColor
+        self.backgroundColor = backgroundColor
+        self.action = action
+    }
+    
     // MARK: -
     public var body: some View {
         Button(action: {
