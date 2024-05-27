@@ -7,6 +7,10 @@
 
 import Foundation
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 extension String {
     
     public var localized: String {
@@ -17,4 +21,12 @@ extension String {
         let stringFormated = self.replacingOccurrences(of: ",", with: ".")
         return Double(stringFormated)
     }
+    
+    #if canImport(UIKit)
+    public func width(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [NSAttributedString.Key.font: font]
+        let size = self.size(withAttributes: fontAttributes)
+        return size.width
+    }
+    #endif
 }
