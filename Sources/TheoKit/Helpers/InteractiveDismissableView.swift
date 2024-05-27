@@ -5,8 +5,6 @@
 //  Created by KaayZenn on 27/05/2024.
 //
 
-#if canImport(UIKit)
-
 import Foundation
 import UIKit
 import SwiftUI
@@ -52,5 +50,3 @@ extension View {
         InteractiveDismissableView(view: self, isDisabled: isDisabled, onAttemptToDismiss: onAttemptToDismiss)
     }
 }
-
-#endif
