@@ -19,6 +19,12 @@ public struct MailView: UIViewControllerRepresentable {
     var recipients: [String]?
     var subject: String?
     
+    public init(result: Binding<Result<MFMailComposeResult, Error>?>? = nil, recipients: [String]? = nil, subject: String? = nil) {
+           self._result = result ?? .constant(nil)
+           self.recipients = recipients
+           self.subject = subject
+       }
+    
     public func makeCoordinator() -> Coordinator {
         return Coordinator(
             presentation: presentation,
