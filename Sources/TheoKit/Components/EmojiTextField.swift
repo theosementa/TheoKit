@@ -42,6 +42,12 @@ public struct EmojiTextField: UIViewRepresentable {
     var alignment: NSTextAlignment?
     var fontSize: CGFloat?
     
+    public init(text: Binding<String>, alignment: NSTextAlignment? = nil, fontSize: CGFloat? = nil) {
+        self._text = text
+        self.alignment = alignment
+        self.fontSize = fontSize
+    }
+    
     public func makeUIView(context: Context) -> UIEmojiTextField {
         let emojiTextField = UIEmojiTextField()
         emojiTextField.text = text
