@@ -52,7 +52,7 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
             .padding(.vertical, 8)
             .frame(height: height ?? 400)
             .frame(maxWidth: .infinity)
-            .background(Color(uiColor: .systemBackground))
+            .background(Color.Apple.backgroundSheet)
             .clipShape(RoundedRectangle(cornerRadius: UIScreen.main.displayCornerRadius, style: .continuous))
             .padding(4)
         }
