@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SemiCustomSheetView<SheetContent: View>: View {
+public struct SemiCustomSheetView<SheetContent: View>: View {
     
     // Builder
     @Binding var isPresented: Bool
@@ -22,7 +22,7 @@ struct SemiCustomSheetView<SheetContent: View>: View {
     }
     
     // MARK: -
-    var body: some View {
+    public var body: some View {
         if isPresented {
             VStack {
                 HStack{

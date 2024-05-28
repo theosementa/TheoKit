@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
+public struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
     
     // Builder
     @Binding var isPresented: Bool
@@ -22,7 +22,7 @@ struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
     }
     
     // MARK: -
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .disabled(isPresented)
@@ -54,7 +54,7 @@ struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
 
 // MARK: - View Extension
 extension View {
-    func semiCustomSheet<SheetContent: View>(
+    public func semiCustomSheet<SheetContent: View>(
         isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> SheetContent
     ) -> some View {
