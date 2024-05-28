@@ -27,8 +27,7 @@ extension String {
     }
     
     public func isEmptyWithoutSpace() -> Bool {
-        var string = self
-        if string.replacingOccurrences(of: " ", with: "").isEmpty {
+        if self.replacingOccurrences(of: " ", with: "").isEmpty {
             return true
         } else { 
             return false
