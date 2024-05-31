@@ -34,6 +34,11 @@ extension String {
         }
     }
     
+    public func toDouble() -> Double {
+        let newString = self.replacingOccurrences(of: ",", with: ".")
+        return Double(newString) ?? 0
+    }
+    
     #if canImport(UIKit)
     public func width(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [NSAttributedString.Key.font: font]
