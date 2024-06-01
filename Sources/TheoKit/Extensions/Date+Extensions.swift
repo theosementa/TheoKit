@@ -7,6 +7,20 @@
 
 import Foundation
 
+extension Date {
+    
+    func lastDayOfYear() -> Date? {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.year = calendar.component(.year, from: self)
+        components.month = 12
+        components.day = 31
+        
+        return calendar.date(from: components)
+    }
+    
+}
+
 // MARK: - Validation
 extension Date {
     
