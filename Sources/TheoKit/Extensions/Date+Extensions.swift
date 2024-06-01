@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
     
-    func lastDayOfYear() -> Date? {
+    public func lastDayOfYear() -> Date? {
         let calendar = Calendar.current
         var components = DateComponents()
         components.year = calendar.component(.year, from: self)
