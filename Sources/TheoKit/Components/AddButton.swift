@@ -42,7 +42,6 @@ public struct AddButton: View {
     public var body: some View {
         Button(action: {
             action()
-            VibrationManager.shared.doVibration()
         }, label: {
             Circle()
                 .fill(backgroundColor ?? Color.label)
