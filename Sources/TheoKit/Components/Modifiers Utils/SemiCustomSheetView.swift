@@ -12,12 +12,14 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
     // Builder
     @Binding var isPresented: Bool
     var height: CGFloat?
+    var withDismissButton: Bool?
     var content: SheetContent
     
     // init
-    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, content: SheetContent) {
+    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, content: SheetContent) {
         self._isPresented = isPresented
         self.height = height
+        self.withDismissButton = withDismissButton
         self.content = content
     }
     
@@ -25,32 +27,31 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
     public var body: some View {
         if isPresented {
             VStack {
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        withAnimation(.smooth) {
-                            isPresented = false
-                        }
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundStyle(Color(uiColor: .label))
-                            .padding(6)
-                            .background {
-                                Circle()
-                                    .foregroundStyle(Color(uiColor: .systemGray4))
+                if let withDismissButton, withDismissButton {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation(.smooth) {
+                                isPresented = false
                             }
-                    })
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundStyle(Color(uiColor: .label))
+                                .padding(6)
+                                .background {
+                                    Circle()
+                                        .foregroundStyle(Color(uiColor: .systemGray4))
+                                }
+                        })
+                    }
                 }
-                Spacer()
                 
                 content
-                
-                Spacer()
             }
             .padding(24)
             .padding(.vertical, 8)
-            .frame(height: height ?? 400)
+            .frame(height: height ?? nil)
             .frame(maxWidth: .infinity)
             .background(Color.Apple.backgroundSheet)
             .clipShape(RoundedRectangle(cornerRadius: UIScreen.main.displayCornerRadius, style: .continuous))

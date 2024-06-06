@@ -13,11 +13,13 @@ public struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
     // Builder
     @Binding var isPresented: Bool
     var height: CGFloat?
+    var withDismissButton: Bool?
     var sheetContent: () -> SheetContent
     
-    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, sheetContent: @escaping () -> SheetContent) {
+    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, sheetContent: @escaping () -> SheetContent) {
         self._isPresented = isPresented
         self.height = height
+        self.withDismissButton = withDismissButton
         self.sheetContent = sheetContent
     }
     
@@ -40,7 +42,7 @@ public struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
                     }
                     
                     if isPresented {
-                        SemiCustomSheetView(isPresented: $isPresented, height: height, content: sheetContent())
+                        SemiCustomSheetView(isPresented: $isPresented, height: height, withDismissButton: withDismissButton, content: sheetContent())
                             .transition(.move(edge: .bottom))
                             .animation(.easeInOut(duration: 0.3), value: isPresented)
                             .ignoresSafeArea()
@@ -56,11 +58,15 @@ public struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
 extension View {
     public func semiCustomSheet<SheetContent: View>(
         isPresented: Binding<Bool>,
+        height: CGFloat? = nil,
+        withDismissButton: Bool? = true,
         @ViewBuilder content: @escaping () -> SheetContent
     ) -> some View {
         modifier(
             SemiCustomSheetModifier(
                 isPresented: isPresented,
+                height: height,
+                withDismissButton: withDismissButton,
                 sheetContent: content
             )
         )
