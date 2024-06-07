@@ -14,12 +14,14 @@ public struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     var height: CGFloat?
     var withDismissButton: Bool?
+    var borderSpacing: CGFloat?
     var sheetContent: () -> SheetContent
     
-    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, sheetContent: @escaping () -> SheetContent) {
+    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, borderSpacing: CGFloat? = nil, sheetContent: @escaping () -> SheetContent) {
         self._isPresented = isPresented
         self.height = height
         self.withDismissButton = withDismissButton
+        self.borderSpacing = borderSpacing
         self.sheetContent = sheetContent
     }
     
@@ -42,7 +44,7 @@ public struct SemiCustomSheetModifier<SheetContent: View>: ViewModifier {
                     }
                     
                     if isPresented {
-                        SemiCustomSheetView(isPresented: $isPresented, height: height, withDismissButton: withDismissButton, content: sheetContent())
+                        SemiCustomSheetView(isPresented: $isPresented, height: height, withDismissButton: withDismissButton, borderSpacing: borderSpacing, content: sheetContent())
                             .transition(.move(edge: .bottom))
                             .animation(.easeInOut(duration: 0.3), value: isPresented)
                             .ignoresSafeArea()
@@ -60,6 +62,7 @@ extension View {
         isPresented: Binding<Bool>,
         height: CGFloat? = nil,
         withDismissButton: Bool? = true,
+        borderSpacing: CGFloat? = nil,
         @ViewBuilder content: @escaping () -> SheetContent
     ) -> some View {
         modifier(
@@ -67,6 +70,7 @@ extension View {
                 isPresented: isPresented,
                 height: height,
                 withDismissButton: withDismissButton,
+                borderSpacing: borderSpacing,
                 sheetContent: content
             )
         )

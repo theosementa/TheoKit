@@ -13,13 +13,15 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
     @Binding var isPresented: Bool
     var height: CGFloat?
     var withDismissButton: Bool?
+    var borderSpacing: CGFloat?
     var content: SheetContent
     
     // init
-    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, content: SheetContent) {
+    public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, borderSpacing: CGFloat? = nil, content: SheetContent) {
         self._isPresented = isPresented
         self.height = height
         self.withDismissButton = withDismissButton
+        self.borderSpacing = borderSpacing
         self.content = content
     }
     
@@ -55,7 +57,7 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
             .frame(maxWidth: .infinity)
             .background(Color.Apple.backgroundSheet)
             .clipShape(RoundedRectangle(cornerRadius: UIScreen.main.displayCornerRadius, style: .continuous))
-            .padding(4)
+            .padding(borderSpacing ?? 4)
         }
     } // End body
 } // End struct
@@ -64,7 +66,7 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
 #Preview {
     VStack {
         Text("Hello")
-            .semiCustomSheet(isPresented: .constant(true)) {
+            .semiCustomSheet(isPresented: .constant(true), withDismissButton: false) {
                 Text("Hello World !")
             }
     }
