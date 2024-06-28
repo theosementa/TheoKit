@@ -74,7 +74,9 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
             .gesture(
                 DragGesture()
                     .onChanged { value in
-                        dragOffset = value.translation.height
+                        if value.translation.height > 0 {
+                            dragOffset = value.translation.height
+                        }
                     }
                     .onEnded { value in
                         if offset + dragOffset > contentHeight / 2 {
@@ -89,7 +91,8 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
                     }
             )
             .onAppear {
-                offset = .zero
+                self.offset = .zero
+                self.dragOffset = 0
             }
         }
     } // End body
