@@ -16,10 +16,6 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
     var borderSpacing: CGFloat?
     var content: SheetContent
     
-    @State private var offset = CGFloat.zero
-    @State private var dragOffset = CGFloat.zero
-    @State private var contentHeight: CGFloat = 0
-    
     // init
     public init(isPresented: Binding<Bool>, height: CGFloat? = nil, withDismissButton: Bool? = true, borderSpacing: CGFloat? = nil, content: SheetContent) {
         self._isPresented = isPresented
@@ -54,14 +50,6 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
                 }
                 
                 content
-                    .background(
-                        GeometryReader { geometry -> Color in
-                            DispatchQueue.main.async {
-                                self.contentHeight = geometry.size.height
-                            }
-                            return Color.clear
-                        }
-                    )
             }
             .padding(24)
             .padding(.vertical, 8)
@@ -70,38 +58,8 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
             .background(Color.Apple.backgroundSheet)
             .clipShape(RoundedRectangle(cornerRadius: UIScreen.main.displayCornerRadius, style: .continuous))
             .padding(borderSpacing ?? 4)
-            .offset(y: offset + dragOffset)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        if value.translation.height > 0 {
-                            dragOffset = value.translation.height
-                        }
-                    }
-                    .onEnded { value in
-                        if offset + dragOffset > contentHeight / 2 {
-                            withAnimation(.smooth) {
-                                isPresented = false
-                            }
-                            resetOffsets()
-                        } else {
-                            withAnimation(.smooth) {
-                                dragOffset = .zero
-                            }
-                        }
-                    }
-            )
-            .onChange(of: isPresented) { _ in
-                resetOffsets()
-            }
         }
     } // End body
-    
-    private func resetOffsets() {
-        self.offset = .zero
-        self.dragOffset = .zero
-    }
-    
 } // End struct
 
 // MARK: - Preview
@@ -109,27 +67,6 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
     VStack {
         Text("Hello")
             .semiCustomSheet(isPresented: .constant(true), withDismissButton: false) {
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
-                Text("Hello World !")
                 Text("Hello World !")
             }
     }
