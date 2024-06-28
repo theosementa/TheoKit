@@ -92,7 +92,13 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
             )
             .onAppear {
                 self.offset = .zero
-                self.dragOffset = 0
+                self.dragOffset = .zero
+            }
+            .onChange(of: isPresented) { _ in
+                if !isPresented {
+                    self.offset = .zero
+                    self.dragOffset = .zero
+                }
             }
         }
     } // End body
