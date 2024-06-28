@@ -83,6 +83,7 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
                             withAnimation(.smooth) {
                                 isPresented = false
                             }
+                            resetOffsets()
                         } else {
                             withAnimation(.smooth) {
                                 dragOffset = .zero
@@ -90,20 +91,18 @@ public struct SemiCustomSheetView<SheetContent: View>: View {
                         }
                     }
             )
-            .onAppear {
-                self.offset = .zero
-                self.dragOffset = .zero
-            }
             .onChange(of: isPresented) { _ in
-                if !isPresented {
-                    self.offset = .zero
-                    self.dragOffset = .zero
-                }
+                resetOffsets()
             }
         }
     } // End body
+    
+    private func resetOffsets() {
+        self.offset = .zero
+        self.dragOffset = .zero
+    }
+    
 } // End struct
-
 
 // MARK: - Preview
 #Preview {
