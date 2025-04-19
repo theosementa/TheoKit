@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  UIScreen+Extensions.swift
+//  TheoKit
 //
-//  Created by KaayZenn on 27/05/2024.
+//  Created by Theo Sementa on 19/04/2025.
 //
 
 #if canImport(UIKit)

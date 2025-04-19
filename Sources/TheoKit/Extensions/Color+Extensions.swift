@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  Colors+Extensions.swift
+//  TheoKit
 //
-//  Created by KaayZenn on 27/05/2024.
+//  Created by Theo Sementa on 19/04/2025.
 //
 
 import Foundation
@@ -41,44 +41,6 @@ extension Color {
         return Color(uiColor: UIColor { traitCollection in
             return traitCollection.userInterfaceStyle == .dark ? UIColor(Color.white) : UIColor(Color.black)
         })
-    }
-    
-}
-
-extension Color {
-    
-    public struct Apple {
-        
-        public static var background: Color {
-            return Color(uiColor: UIColor { traitCollection in
-                return traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "000000")) : UIColor(Color(hex: "F2F2F7"))
-            })
-        }
-        
-        public static var backgroundComponent: Color {
-            return Color(uiColor: UIColor { traitCollection in
-                return traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "1C1C1E")) : UIColor(Color(hex: "FFFFFF"))
-            })
-        }
-        
-        public static var backgroundComponentSheet: Color {
-            return Color(uiColor: UIColor { traitCollection in
-                return traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "2C2C2E")) : UIColor(Color(hex: "F2F2F7"))
-            })
-        }
-        
-        public static var backgroundSheet: Color {
-            return Color(uiColor: UIColor { traitCollection in
-                return traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "1C1C1E")) : UIColor(Color(hex: "FFFFFF"))
-            })
-        }
-        
-        public static var componentInComponent: Color {
-            return Color(uiColor: UIColor { traitCollection in
-                return traitCollection.userInterfaceStyle == .dark ? UIColor(Color(hex: "39393D")) : UIColor(Color(hex: "D9D9DE"))
-            })
-        }
-    
     }
     
 }

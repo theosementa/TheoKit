@@ -1,8 +1,8 @@
 //
-//  File.swift
-//  
+//  String+Extensions.swift
+//  TheoKit
 //
-//  Created by KaayZenn on 27/05/2024.
+//  Created by Theo Sementa on 19/04/2025.
 //
 
 import Foundation
@@ -17,26 +17,15 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
     
-    var localizedPackage: String {
-        return NSLocalizedString(self, bundle: .module, comment: "")
-    }
-    
-    public func toDouble() -> Double? {
-        let stringFormated = self.replacingOccurrences(of: ",", with: ".")
-        return Double(stringFormated)
-    }
-    
-    public func isEmptyWithoutSpace() -> Bool {
-        if self.replacingOccurrences(of: " ", with: "").isEmpty {
-            return true
-        } else { 
-            return false
-        }
+    public var isBlank: Bool {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
     public func toDouble() -> Double {
-        let newString = self.replacingOccurrences(of: ",", with: ".")
-        return Double(newString) ?? 0
+        let newVariable = NumberFormatter()
+        newVariable.numberStyle = .decimal
+        newVariable.locale = Locale.current
+        return newVariable.number(from: self) as? Double ?? 0
     }
     
     #if canImport(UIKit)

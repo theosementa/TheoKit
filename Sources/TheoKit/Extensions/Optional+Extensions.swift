@@ -1,19 +1,19 @@
 //
-//  File.swift
-//  
+//  Optional+Extensions.swift
+//  TheoKit
 //
-//  Created by KaayZenn on 27/05/2024.
+//  Created by Theo Sementa on 19/04/2025.
 //
 
 import Foundation
 
 extension Optional {
     
-    public func isNil() -> Bool {
+    public var isNil: Bool {
         return self == nil
     }
     
-    public func isNotNil() -> Bool {
+    public var isNotNil: Bool {
         return self != nil
     }
     

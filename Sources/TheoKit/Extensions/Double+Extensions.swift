@@ -1,16 +1,20 @@
 //
-//  File.swift
-//  
+//  Double+Extensions.swift
+//  TheoKit
 //
-//  Created by KaayZenn on 01/06/2024.
+//  Created by Theo Sementa on 19/04/2025.
 //
 
 import Foundation
 
 extension Double {
     
-    public func formatWith(num: Int) -> String {
-        return String(format: "%.\(num)f", self)
+    public func toString(maxDigits: Int = 2) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = maxDigits
+        return formatter.string(from: NSNumber(value: self)) ?? ""
     }
     
 }
