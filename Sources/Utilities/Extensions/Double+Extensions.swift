@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension Double {
+public extension Double {
     
-    public func toString(maxDigits: Int = 2) -> String {
+    func toString(maxDigits: Int = 2) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0

@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension Int64 {
+public extension Int64 {
     
-    public func toInt() -> Int {
+    func toInt() -> Int {
         return Int(self)
     }
     

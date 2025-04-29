@@ -7,9 +7,9 @@
 
 import Foundation
 
-extension DateComponents {
+public extension DateComponents {
     
-    public func toDate() -> Date? {
+    func toDate() -> Date? {
         return Calendar.current.date(from: self)
     }
     

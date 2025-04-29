@@ -7,13 +7,13 @@
 
 import Foundation
 
-extension Optional {
+public extension Optional {
     
-    public var isNil: Bool {
+    var isNil: Bool {
         return self == nil
     }
     
-    public var isNotNil: Bool {
+    var isNotNil: Bool {
         return self != nil
     }
     
