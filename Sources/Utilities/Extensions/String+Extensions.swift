@@ -29,7 +29,7 @@ public extension String {
     
     func toDate() -> Date? {
         let dateIsoFormatter = ISO8601DateFormatter()
-        dateIsoFormatter.formatOptions = [.withInternetDateTime]
+        dateIsoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         return dateIsoFormatter.date(from: self)
     }
     
