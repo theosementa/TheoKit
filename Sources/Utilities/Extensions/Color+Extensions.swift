@@ -11,13 +11,13 @@ public extension Color {
     
     init(hex: String) {
         let cleanHex = hex
-            .trimmingCharacters(in: .whitespacesAndNewlines)
             .replacingOccurrences(of: "#", with: "")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
         
         var int: UInt64 = 0
         Scanner(string: cleanHex).scanHexInt64(&int)
         let a, r, g, b: UInt64
-        switch hex.count {
+        switch cleanHex.count {
         case 3: // RGB (12-bit)
             (a, r, g, b) = (255, (int >> 8 * 17) & 0xFF, (int >> 4 * 17) & 0xFF, int * 17 & 0xFF)
         case 6: // RGB (24-bit)
