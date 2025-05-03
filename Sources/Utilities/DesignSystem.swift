@@ -148,9 +148,9 @@ public extension TKDesignSystem {
         }
         public struct Title {
             /// `This font is in "Bold 24" style`
-            public static let extraLarge: Font = Font.custom(TKDesignSystem.fontBold, size: 24)
+            public static let large: Font = Font.custom(TKDesignSystem.fontBold, size: 24)
             /// `This font is in "Medium 20" style`
-            public static let large: Font = Font.custom(TKDesignSystem.fontMedium, size: 20)
+            public static let medium: Font = Font.custom(TKDesignSystem.fontMedium, size: 20)
         }
         public struct Body {
             /// `This font is in "Bold 18" style`
