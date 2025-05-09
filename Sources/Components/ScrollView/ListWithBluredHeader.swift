@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListWithBluredHeader<Header: View, Content: View>: View {
+public struct ListWithBluredHeader<Header: View, Content: View>: View {
 
     // MARK: Dependencies
     let header: Header
@@ -18,24 +18,30 @@ struct ListWithBluredHeader<Header: View, Content: View>: View {
     @State private var alreadyCalculatedHeaderHeight: Bool = false
     
     // MARK: Config
+    private let scrollIndicators: ScrollIndicatorVisibility
+    private let scrollBehavior: ScrollDismissesKeyboardMode
     private let maxBlurRadius: CGFloat
     
     // MARK: Environment
     @Environment(\.safeAreaInsets) private var safeAreaInsets
 
     // MARK: init
-    init(
+    public init(
         maxBlurRadius: CGFloat = 10,
+        scrollIndicators: ScrollIndicatorVisibility = .hidden,
+        scrollBehavior: ScrollDismissesKeyboardMode = .interactively,
         @ViewBuilder header: () -> Header,
         @ViewBuilder content: () -> Content
     ) {
         self.maxBlurRadius = maxBlurRadius
+        self.scrollIndicators = scrollIndicators
+        self.scrollBehavior = scrollBehavior
         self.header = header()
         self.content = content()
     }
     
     // MARK: - View
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: .top) {
             List {
                 Color.clear
@@ -45,6 +51,8 @@ struct ListWithBluredHeader<Header: View, Content: View>: View {
                 content
             }
             .listStyle(.plain)
+            .scrollIndicators(scrollIndicators)
+            .scrollDismissesKeyboard(scrollBehavior)
                         
             header
                 .frame(height: headerHeight != 0 ? headerHeight + safeAreaInsets.top : nil, alignment: .bottom)
