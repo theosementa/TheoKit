@@ -17,11 +17,19 @@ struct ListWithBluredHeader<Header: View, Content: View>: View {
     @State private var headerHeight: CGFloat = 0
     @State private var alreadyCalculatedHeaderHeight: Bool = false
     
+    // MARK: Config
+    private let maxBlurRadius: CGFloat
+    
     // MARK: Environment
     @Environment(\.safeAreaInsets) private var safeAreaInsets
 
     // MARK: init
-    init(@ViewBuilder header: () -> Header, @ViewBuilder content: () -> Content) {
+    init(
+        maxBlurRadius: CGFloat = 10,
+        @ViewBuilder header: () -> Header,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.maxBlurRadius = maxBlurRadius
         self.header = header()
         self.content = content()
     }
@@ -40,7 +48,7 @@ struct ListWithBluredHeader<Header: View, Content: View>: View {
                         
             header
                 .frame(height: headerHeight != 0 ? headerHeight + safeAreaInsets.top : nil, alignment: .bottom)
-                .background(VariableBlurView(maxBlurRadius: 10, direction: .blurredTopClearBottom))
+                .background(VariableBlurView(maxBlurRadius: maxBlurRadius, direction: .blurredTopClearBottom))
                 .getSize { size in
                     if !alreadyCalculatedHeaderHeight {
                         self.headerHeight = size.height

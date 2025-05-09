@@ -17,7 +17,7 @@ public enum VariableBlurDirection {
 
 public struct VariableBlurView: UIViewRepresentable {
 
-    public var maxBlurRadius: CGFloat = 20
+    public var maxBlurRadius: CGFloat
 
     public var direction: VariableBlurDirection = .blurredTopClearBottom
 
@@ -35,7 +35,7 @@ public struct VariableBlurView: UIViewRepresentable {
 /// credit https://github.com/jtrivedi/VariableBlurView
 open class VariableBlurUIView: UIVisualEffectView {
 
-    public init(maxBlurRadius: CGFloat = 20, direction: VariableBlurDirection = .blurredTopClearBottom, startOffset: CGFloat = 0) {
+    public init(maxBlurRadius: CGFloat, direction: VariableBlurDirection = .blurredTopClearBottom, startOffset: CGFloat = 0) {
         super.init(effect: UIBlurEffect(style: .regular))
 
         // `CAFilter` is a private QuartzCore class that dynamically create using Objective-C runtime.

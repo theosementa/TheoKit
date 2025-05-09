@@ -27,18 +27,21 @@ public struct BetterScrollView<Header: View, Content: View>: View {
     // MARK: Config
     private let scrollIndicators: ScrollIndicatorVisibility
     private let scrollBehavior: ScrollDismissesKeyboardMode
+    private let maxBlurRadius: CGFloat
     
     // MARK: Init
     public init(
         scrollIndicators: ScrollIndicatorVisibility = .hidden,
         scrollBehavior: ScrollDismissesKeyboardMode = .interactively,
         headerBackground: HeaderBackground = .blur,
+        maxBlurRadius: CGFloat = 10,
         @ViewBuilder header: () -> Header,
         @ViewBuilder content: @escaping (ScrollViewProxy) -> Content
     ) {
         self.header = header()
         self.content = content
         self.headerBackground = headerBackground
+        self.maxBlurRadius = maxBlurRadius
         self.scrollIndicators = scrollIndicators
         self.scrollBehavior = scrollBehavior
     }
@@ -83,7 +86,7 @@ public struct BetterScrollView<Header: View, Content: View>: View {
     private func headerBackgroundView() -> some View {
         switch headerBackground {
         case .blur:
-            VariableBlurView(maxBlurRadius: 10, direction: .blurredTopClearBottom)
+            VariableBlurView(maxBlurRadius: maxBlurRadius, direction: .blurredTopClearBottom)
         case .custom(let view):
             view
         }
