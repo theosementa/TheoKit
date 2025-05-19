@@ -30,10 +30,20 @@ public struct VariableBlurView: UIViewRepresentable {
 
     public func updateUIView(_ uiView: VariableBlurUIView, context: Context) {
     }
+    
+    public init(
+        maxBlurRadius: CGFloat,
+        direction: VariableBlurDirection = .blurredTopClearBottom,
+        startOffset: CGFloat = 0
+    ) {
+        self.maxBlurRadius = maxBlurRadius
+        self.direction = direction
+        self.startOffset = startOffset
+    }
 }
 
 /// credit https://github.com/jtrivedi/VariableBlurView
-open class VariableBlurUIView: UIVisualEffectView {
+public class VariableBlurUIView: UIVisualEffectView {
 
     public init(maxBlurRadius: CGFloat, direction: VariableBlurDirection = .blurredTopClearBottom, startOffset: CGFloat = 0) {
         super.init(effect: UIBlurEffect(style: .regular))

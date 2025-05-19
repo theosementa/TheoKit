@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct SafeAreaInsetsKey: EnvironmentKey {
-    static var defaultValue: EdgeInsets {
+public struct SafeAreaInsetsKey: EnvironmentKey {
+    public static var defaultValue: EdgeInsets {
         UIApplication
         .shared
         .connectedScenes
@@ -21,13 +21,13 @@ struct SafeAreaInsetsKey: EnvironmentKey {
     }
 }
 
-extension UIEdgeInsets {
+public extension UIEdgeInsets {
     var swiftUiInsets: EdgeInsets {
         EdgeInsets(top: top, leading: left, bottom: bottom, trailing: right)
     }
 }
 
-extension EnvironmentValues {
+public extension EnvironmentValues {
     var safeAreaInsets: EdgeInsets {
         self[SafeAreaInsetsKey.self]
     }
