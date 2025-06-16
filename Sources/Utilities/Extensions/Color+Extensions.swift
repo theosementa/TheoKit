@@ -36,9 +36,31 @@ public extension Color {
         )
     }
     
+    func toHex() -> String {
+        guard let components = UIColor(self).cgColor.components else { return "" }
+        
+        let r: CGFloat = components[0]
+        let g: CGFloat = components[1]
+        let b: CGFloat = components[2]
+        let a: CGFloat = components.count >= 4 ? components[3] : 1.0
+        
+        let hexR = String(format: "%02lX", Int(r * 255))
+        let hexG = String(format: "%02lX", Int(g * 255))
+        let hexB = String(format: "%02lX", Int(b * 255))
+        let hexA = a < 1.0 ? String(format: "%02lX", Int(a * 255)) : ""
+        
+        return "\(hexR)\(hexG)\(hexB)\(hexA)"
+    }
+    
     static var label: Color {
         return Color(uiColor: UIColor { traitCollection in
             return traitCollection.userInterfaceStyle == .dark ? UIColor(Color.white) : UIColor(Color.black)
+        })
+    }
+    
+    static var labelInverse: Color {
+        return Color(uiColor: UIColor { traitCollection in
+            return traitCollection.userInterfaceStyle == .dark ? UIColor(Color.black) : UIColor(Color.white)
         })
     }
     
