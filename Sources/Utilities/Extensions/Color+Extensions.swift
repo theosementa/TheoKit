@@ -96,4 +96,85 @@ public extension Color {
         return self
     }
     
+    
+}
+
+public extension Color {
+    
+    struct HSL {
+        var h: Double
+        var s: Double
+        var l: Double
+    }
+    
+    func adjustLightness(percent: Double) -> Color {
+        let hex = self.toHex()
+        
+        let hsl = hexToHSL(hex)
+        let newLightness = min(1, max(0, hsl.l + percent / 100))
+        let newHex = hslToHex(hsl.h, hsl.s, newLightness)
+        return Color(hex: newHex)
+    }
+
+    private func hexToHSL(_ hex: String) -> HSL {
+        let r = Double(Int(hex.prefix(2), radix: 16)!) / 255.0
+        let g = Double(Int(hex[hex.index(hex.startIndex, offsetBy: 2)..<hex.index(hex.startIndex, offsetBy: 4)], radix: 16)!) / 255.0
+        let b = Double(Int(hex[hex.index(hex.startIndex, offsetBy: 4)..<hex.index(hex.startIndex, offsetBy: 6)], radix: 16)!) / 255.0
+        
+        let max = Swift.max(r, g, b)
+        let min = Swift.min(r, g, b)
+        var h: Double = 0
+        var s: Double = 0
+        let l = (max + min) / 2
+        
+        if max != min {
+            let d = max - min
+            s = l > 0.5 ? d / (2.0 - max - min) : d / (max + min)
+            
+            switch max {
+            case r: h = (g - b) / d + (g < b ? 6 : 0)
+            case g: h = (b - r) / d + 2
+            case b: h = (r - g) / d + 4
+            default: break
+            }
+            h /= 6
+        }
+        
+        return HSL(h: h * 360, s: s, l: l)
+    }
+
+    private func hueToRGB(_ p: Double, _ q: Double, _ t: Double) -> Double {
+        var t = t
+        if t < 0 { t += 1 }
+        if t > 1 { t -= 1 }
+        if t < 1/6 { return p + (q - p) * 6 * t }
+        if t < 1/2 { return q }
+        if t < 2/3 { return p + (q - p) * (2/3 - t) * 6 }
+        return p
+    }
+
+    private func hslToHex(_ h: Double, _ s: Double, _ l: Double) -> String {
+        var r, g, b: Double
+        
+        if s == 0 {
+            r = l
+            g = l
+            b = l
+        } else {
+            let q = l < 0.5 ? l * (1 + s) : l + s - l * s
+            let p = 2 * l - q
+            
+            r = hueToRGB(p, q, h / 360 + 1/3)
+            g = hueToRGB(p, q, h / 360)
+            b = hueToRGB(p, q, h / 360 - 1/3)
+        }
+        
+        func toHex(_ x: Double) -> String {
+            let hex = String(format: "%02X", Int(round(x * 255)))
+            return hex
+        }
+        
+        return toHex(r) + toHex(g) + toHex(b)
+    }
+
 }
