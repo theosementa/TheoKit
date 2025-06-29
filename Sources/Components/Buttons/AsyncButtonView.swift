@@ -14,7 +14,12 @@ public struct AsyncButtonView<Label: View>: View {
     var action: () async -> Void
     var label: () -> Label
     
-    public init(role: ButtonRole? = nil, action: @escaping () async -> Void, @ViewBuilder label: @escaping () -> Label) {
+    // MARK: Init
+    public init(
+        role: ButtonRole? = nil,
+        action: @escaping () async -> Void,
+        @ViewBuilder label: @escaping () -> Label
+    ) {
         self.role = role
         self.action = action
         self.label = label

@@ -9,13 +9,13 @@ import Foundation
 import Combine
 import SwiftUI
 
-class KeyboardManager: ObservableObject {
-    @Published var keyboardHeight: CGFloat = 0
-    @Published var isKeyboardVisible = false
+public class KeyboardManager: ObservableObject {
+    @Published public var keyboardHeight: CGFloat = 0
+    @Published public var isKeyboardVisible = false
     
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    public init() {
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
             .sink { [weak self] notification in
                 guard let self = self,
